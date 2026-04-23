@@ -23,11 +23,10 @@ public class transferRepository implements ITransferRepository{
         //1. Mở sesion
         Session session = sessionFactory.getCurrentSession();
 
-//        Transaction tx = session.beginTransaction();
         //2. tìm ra đối tượng sender và receiver
         Account sender = session.get(Account.class, senderId);
         Account receiver = session.get(Account.class, receiverId);
-        //3. kiểm tra xem có đủ điền hay không
+        //3. kiểm tra xem có đủ điền hay k
         if(amount < 0){
             System.err.println("Số tiền chuyển không hợp lệ.");
 //            tx.rollback();
@@ -36,7 +35,7 @@ public class transferRepository implements ITransferRepository{
             System.err.println("Số dư không đủ");
 //            tx.rollback();
         }
-        //4. Cập nhật tiền trong tài khoản (sender -) (receive +)
+        //4. Cập nhật tiền trong tài khoản
         sender.setBanlance(sender.getBanlance() - amount);
         receiver.setBanlance(receiver.getBanlance() + amount);
         //5. lưu database
