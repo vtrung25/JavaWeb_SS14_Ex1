@@ -1,7 +1,5 @@
 1. Trace logic (diễn biến lỗi)
 
-Giả sử flow code kiểu phổ biến:
-
 beginTransaction();
 
 updateOrderStatus(orderId, "PAID");   // (1)
